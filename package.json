@@ -1,0 +1,24 @@
+{
+  "name": "generator-cucumber-step-definitions",
+  "version": "0.0.1",
+  "description": "Generate cucumber step definitions from .feature files",
+  "files": [
+    "generators"
+  ],
+  "main": "generators/app/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "null"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Ralph Saunders <ralphcgsaunders@gmail.com>",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "yeoman-generator": "^4.10.1"
+  }
+}
