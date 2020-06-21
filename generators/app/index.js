@@ -3,6 +3,7 @@ const yosay = require( 'yosay' );
 const glob = require( 'glob' );
 const prompts = require( './prompts' );
 const ai = require( './ai' );
+const Cli = require( 'cucumber' ).Cli
 
 module.exports = class CucumberStepDefinitions extends Generator {
     constructor( args, opts ) {
@@ -20,14 +21,16 @@ module.exports = class CucumberStepDefinitions extends Generator {
     writing() {
         const { featurePaths } = this.props;
 
-        glob( featurePaths, function( error, files ) {
-            if( error ) {
-                throw new Error( error )
-            }
+        glob( featurePaths, ( error, files ) => {
+            if( error ) throw new Error( error );
 
-            console.log( files );
-
-            console.log( 'end' );
+            files.forEach( path => {
+                fs.readFile( path, 'utf8', this.parseFeature );
+            } );
         } );
+    }
+
+    parseFeature( error, data ) {
+        if( error ) throw new Error( error );
     }
 }
