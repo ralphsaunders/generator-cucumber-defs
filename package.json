@@ -8,11 +8,11 @@
   "main": "generators/app/index.js",
   "scripts": {
     "lint": "eslint generators/**/*.js",
-    "cucumber": "cucumber-js test/*.feature --no-strict"
+    "cucumber": "cucumber-js --no-strict"
   },
   "repository": {
     "type": "git",
-    "url": "null"
+    "url": "git+ssh://git@github.com/ralphsaunders/generator-cucumberjs.git"
   },
   "keywords": [
     "yeoman-generator",
@@ -33,5 +33,9 @@
   },
   "devDependencies": {
     "eslint": "^7.3.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ralphsaunders/generator-cucumberjs/issues"
+  },
+  "homepage": "https://github.com/ralphsaunders/generator-cucumberjs#readme"
 }
