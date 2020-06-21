@@ -1,5 +1,5 @@
 {
-  "name": "generator-cucumberjs",
+  "name": "generator-cucumber-defs",
   "version": "0.0.1",
   "description": "Generate Cucumber step definitions in JavaScript",
   "files": [
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ralphsaunders/generator-cucumberjs.git"
+    "url": "git+ssh://git@github.com/ralphsaunders/generator-cucumber-defs.git"
   },
   "keywords": [
     "yeoman-generator",
@@ -35,7 +35,7 @@
     "eslint": "^7.3.0"
   },
   "bugs": {
-    "url": "https://github.com/ralphsaunders/generator-cucumberjs/issues"
+    "url": "https://github.com/ralphsaunders/generator-cucumber-defs/issues"
   },
-  "homepage": "https://github.com/ralphsaunders/generator-cucumberjs#readme"
+  "homepage": "https://github.com/ralphsaunders/generator-cucumber-defs#readme"
 }

@@ -9,6 +9,6 @@ and transform the gherkin syntax.
 ## Quick Start
 
 1. `npm i -g yo` Install yeoman
-2. `npm i -g generator-cucumberjs` Install this generator
-3. `yo cucumberjs` Run this generator, it'll guide you through the rest.
+2. `npm i -g generator-cucumber-defs` Install this generator
+3. `yo cucumber-defs` Run this generator, it'll guide you through the rest.
 
