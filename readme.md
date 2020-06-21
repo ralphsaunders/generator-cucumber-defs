@@ -6,6 +6,8 @@ definitions – because life is too short to copypasta them all the time.
 Unlike other generators, this tool uses cucumber-js features directly to parse
 and transform the gherkin syntax.
 
+![Screencapture of yo cucumberjs](./screencap.png)
+
 ## Quick Start
 
 1. `npm i -g yo` Install yeoman
