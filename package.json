@@ -1,5 +1,5 @@
 {
-  "name": "generator-cucumber-step-definitions",
+  "name": "generator-cucumber",
   "version": "0.0.1",
   "description": "Generate cucumber step definitions from .feature files",
   "files": [
@@ -8,7 +8,8 @@
   "main": "generators/app/index.js",
   "scripts": {
     "test": "test",
-    "lint": "eslint generators/**/*.js"
+    "lint": "eslint generators/**/*.js",
+    "cucumber": "cucumber-js test/*.feature --no-strict"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^7.3.0"
   }
 }

@@ -1,13 +1,28 @@
 const Generator = require( 'yeoman-generator' )
 const yosay = require( 'yosay' );
 const glob = require( 'glob' );
-const cucumber = require( 'cucumber' ); const EventEmitter = require( 'events' );
+const cucumber = require( 'cucumber' );
+const EventEmitter = require( 'events' );
 const { IdGenerator } = require( 'cucumber-messages' );
 
-const prompts = require( './prompts' );
-const ai = require( './ai' );
+const promptFor = require( './helpers/prompts' );
+const ai = require( './helpers/ai' );
 
 module.exports = class cucumberStepDefinitions extends Generator {
+    /**
+     * Cucumber Step Definitions
+     *
+     * Yeoman generator that outputs Cucumber steps when given Gherkin .feature
+     * files.
+     *
+     * Unlike other Cucumber generators, this generator uses cucumber-js to
+     * handle parsing and processing of gherkin syntax. We repurpose the
+     * snippetsFormatter that comes with cucumber-js, allowing us to write
+     * JS snippets to disk next to .feature files.
+     *
+     * Use this generator to quickly create .js transformations of .feature
+     * files.
+     */
     constructor( args, opts ) {
         super( args, opts );
         const { uuid } = IdGenerator;
@@ -20,16 +35,19 @@ module.exports = class cucumberStepDefinitions extends Generator {
             ai[ Math.floor( Math.random() * ai.length ) ]
         ) );
 
-        this.props = await this.prompt( prompts )
+        this.props = await this.prompt( promptFor.features )
     }
 
     async writing() {
+        // User input
         const { featureSearch } = this.props;
 
+        // Cucumber guff
         const eventBroadcaster = new EventEmitter();
         const eventDataCollector = new cucumber.formatterHelpers
             .EventDataCollector( eventBroadcaster );
 
+        // Using glob to locate files from the user input
         const featurePaths = await new Promise( ( resolve, reject ) => {
             glob( featureSearch, ( error, matches ) => {
                 if( error ) reject( error );
@@ -37,6 +55,8 @@ module.exports = class cucumberStepDefinitions extends Generator {
             } )
         } );
 
+        // Grab the test cases from the files and push through cucumber's
+        // eventBroadcaster
         const testCases = await cucumber.getTestCasesFromFilesystem( {
             cwd: process.cwd(),
             eventBroadcaster,
@@ -48,6 +68,7 @@ module.exports = class cucumberStepDefinitions extends Generator {
         cucumber.supportCodeLibraryBuilder.reset( '' );
         const supportCodeLibrary = await cucumber.supportCodeLibraryBuilder.finalize();
 
+        // Build our custom formatter with the formatter options
         const formatterOptions = {
             colorsEnabled: false,
             cwd: process.cwd(),
@@ -56,8 +77,8 @@ module.exports = class cucumberStepDefinitions extends Generator {
             log: this.output.bind( this ),
             supportCodeLibrary
         };
-
         cucumber.FormatterBuilder.build( './generators/app/extendedSnippetsFormatter', formatterOptions )
+
         const runtime = new cucumber.Runtime({
             eventBroadcaster,
             options: {},
@@ -71,6 +92,11 @@ module.exports = class cucumberStepDefinitions extends Generator {
         } );
     }
 
+    /**
+     * Output
+     *
+     * Take snippetData and output it to the filesystem
+     */
     output( snippetData ) {
         if( typeof snippetData === 'undefined' ) return;
 
