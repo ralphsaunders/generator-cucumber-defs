@@ -77,7 +77,7 @@ module.exports = class cucumberStepDefinitions extends Generator {
             log: this.output.bind( this ),
             supportCodeLibrary
         };
-        cucumber.FormatterBuilder.build( './generators/app/extendedSnippetsFormatter', formatterOptions )
+        cucumber.FormatterBuilder.build( __dirname + '/extendedSnippetsFormatter', formatterOptions )
 
         const runtime = new cucumber.Runtime({
             eventBroadcaster,
