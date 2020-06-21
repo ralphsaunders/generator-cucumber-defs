@@ -20,6 +20,7 @@
   "author": "Ralph Saunders <ralphcgsaunders@gmail.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "ansi-html": "0.0.7",
     "chalk": "^4.1.0",
     "cucumber": "^6.0.5",
     "cucumber-messages": "^8.0.0",

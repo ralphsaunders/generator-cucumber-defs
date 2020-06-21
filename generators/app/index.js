@@ -1,8 +1,7 @@
 const Generator = require( 'yeoman-generator' )
 const yosay = require( 'yosay' );
 const glob = require( 'glob' );
-const cucumber = require( 'cucumber' );
-const EventEmitter = require( 'events' );
+const cucumber = require( 'cucumber' ); const EventEmitter = require( 'events' );
 const { IdGenerator } = require( 'cucumber-messages' );
 
 const prompts = require( './prompts' );
@@ -54,7 +53,7 @@ module.exports = class cucumberStepDefinitions extends Generator {
             cwd: process.cwd(),
             eventBroadcaster,
             eventDataCollector,
-            log: this.output( data ).bind( this ),
+            log: this.output.bind( this ),
             supportCodeLibrary
         };
 
@@ -83,6 +82,12 @@ module.exports = class cucumberStepDefinitions extends Generator {
             return acc;
         }, {} );
 
-        debugger;
+        for( const file in snippetsByFile ) {
+            this.fs.copyTpl(
+                this.templatePath( 'template.js' ),
+                this.destinationPath( file.replace(/.feature$/, '.js') ),
+                { steps: snippetsByFile[ file ] }
+            );
+        }
     }
 }
