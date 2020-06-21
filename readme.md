@@ -1,3 +1,5 @@
+![Build](https://github.com/ralphsaunders/generator-cucumber-defs/workflows/Build/badge.svg)
+
 # Cucumber JS Step Definitions Generator
 
 This tool transforms your undefined `.feature` files into JavaScript step
