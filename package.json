@@ -22,10 +22,8 @@
   "author": "Ralph Saunders <ralphcgsaunders@gmail.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "ansi-html": "0.0.7",
     "chalk": "^4.1.0",
     "cucumber": "^6.0.5",
-    "cucumber-messages": "^8.0.0",
     "gherkin": "^9.0.0",
     "glob": "^7.1.6",
     "yeoman-generator": "^4.10.1",

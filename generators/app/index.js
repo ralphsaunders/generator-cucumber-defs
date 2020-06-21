@@ -3,7 +3,6 @@ const yosay = require( 'yosay' );
 const glob = require( 'glob' );
 const cucumber = require( 'cucumber' );
 const EventEmitter = require( 'events' );
-const { IdGenerator } = require( 'cucumber-messages' );
 
 const promptFor = require( './helpers/prompts' );
 const ai = require( './helpers/ai' );
@@ -25,9 +24,6 @@ module.exports = class cucumberStepDefinitions extends Generator {
      */
     constructor( args, opts ) {
         super( args, opts );
-        const { uuid } = IdGenerator;
-        this.uuid = uuid;
-        this.dataLog = [];
     }
 
     async prompting() {
