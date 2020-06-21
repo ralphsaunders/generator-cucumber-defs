@@ -7,7 +7,8 @@
   ],
   "main": "generators/app/index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "lint": "eslint generators/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,8 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "cucumber": "^6.0.5",
+    "cucumber-messages": "^8.0.0",
+    "gherkin": "^9.0.0",
     "glob": "^7.1.6",
     "yeoman-generator": "^4.10.1",
     "yosay": "^2.0.2"

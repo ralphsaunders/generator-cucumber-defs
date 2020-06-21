@@ -1,27 +1,20 @@
 const cucumber = require( 'cucumber' );
 
-module.exports = class ExtendedSnippetsFormatter extends cucumber.SnippetsFormatter {
+module.exports.default = class ExtendedSnippetsFormatter extends cucumber.SnippetsFormatter {
     /**
      * Extended Snippets Formatter
      *
-     * Returns snippet strings rather than logging them for programmatic usage.
-     *
-     * Also bybasses eventsbus
+     * Logs snippet objects with context, not just strings.
      */
     constructor( options ) {
         super( options );
-        // options.eventBroadcaster.on('envelope', envelope => {
-        //     if ( typeof envelope.testRunFinished !== undefined && envelope.testRunFinished !== null ) {
-        //         this.getSnippets();
-        //     }
-        // } );
     }
 
-    getSnippets() {
+    logSnippets() {
         const snippets = [];
 
         this.eventDataCollector.getTestCaseAttempts().map( testCaseAttempt => {
-            const parsed = cucumber.parseTestCaseAttempt( {
+            const parsed = cucumber.formatterHelpers.parseTestCaseAttempt( {
                 cwd: this.cwd,
                 snippetBuilder: this.snippetBuilder,
                 supportCodeLibrary: this.supportCodeLibrary,
@@ -29,11 +22,11 @@ module.exports = class ExtendedSnippetsFormatter extends cucumber.SnippetsFormat
             } )
             parsed.testSteps.forEach( testStep => {
                 if ( testStep.result.status === cucumber.Status.UNDEFINED ) {
-                    snippets.push( testStep.snippet )
+                    snippets.push( testStep )
                 }
             } )
         } )
 
-        return snippets;
+        this.log( snippets );
     }
 }
