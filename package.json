@@ -1,13 +1,12 @@
 {
-  "name": "generator-cucumber",
+  "name": "generator-cucumberjs",
   "version": "0.0.1",
-  "description": "Generate cucumber step definitions from .feature files",
+  "description": "Generate Cucumber step definitions in JavaScript",
   "files": [
     "generators"
   ],
   "main": "generators/app/index.js",
   "scripts": {
-    "test": "test",
     "lint": "eslint generators/**/*.js",
     "cucumber": "cucumber-js test/*.feature --no-strict"
   },
@@ -16,7 +15,9 @@
     "url": "null"
   },
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "cucumber",
+    "gherkin"
   ],
   "author": "Ralph Saunders <ralphcgsaunders@gmail.com>",
   "license": "BSD-2-Clause",
@@ -31,7 +32,6 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
     "eslint": "^7.3.0"
   }
 }
